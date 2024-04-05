@@ -142,7 +142,7 @@ void show_users(std::vector<Employee>& employees) {
     std::cout << std::endl;
 } 
 
-// Delete Emplyoee object from vector list based off username.
+// Delete Employee object from vector list based off username.
 void delete_user(std::vector<Employee>& employees) {
     std::string username;
     prompt("Username: ", username);
@@ -172,7 +172,7 @@ void delete_user(std::vector<Employee>& employees) {
     std::cout << "User not found." << std::endl;
 }
 
-// Modify username and role of Employee Object based on user input.
+// Modify username and role of Employee object based on user input.
 void modify_user(std::vector<Employee>& employees) {
     std::string username;
     prompt("Username: ", username);
@@ -338,8 +338,6 @@ int main(void) {
     for (;;) {
         menu(employees, *user_ptr);
     }
-
-    std::cout << "Have a great day!" << std::endl;
 
     return 0;
 }
