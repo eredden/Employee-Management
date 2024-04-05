@@ -175,12 +175,62 @@ void modify_user(std::vector<Employee>& employees, std::string username) {
     std::cout << "User not found." << std::endl;
 }
 
+Employee* login(std::vector<Employee>& employees) {
+    std::string username;
+    std::string password;
+
+    prompt("USERNAME: ", &username);
+    prompt("PASSWORD: ", &password);
+
+    if (!username.length() || !password.length()) {
+        std::cout << "Username and password fields cannot be empty.";
+        std::cout << std::endl << std::endl;
+
+        return nullptr;
+    }
+
+    /* Convert username to uppercase so that we can search the 
+       vector without worrying about case-sensitivity. */
+    std::transform(username.begin(), username.end(), 
+        username.begin(), ::toupper);
+
+    for (int i = 0; i < employees.size(); i++) {
+        if (employees[i].username == username) {
+            if (employees[i].password == password) {
+                std::cout << "Welcome, " << employees[i].username << "!";
+                std::cout << std::endl << std::endl;
+
+                return &employees[i];
+            } else {
+                std::cout << "Invalid credentials.";
+                std::cout << std::endl << std::endl;
+
+                return nullptr;
+            }
+        }
+    }
+
+    std::cout << "Invalid credentials.";
+    std::cout << std::endl << std::endl;
+
+    return nullptr;
+}
+
 int main(void) {
     // Create a list of all employee accounts, including a default account.
     std::vector<Employee> employees = {};
     employees.push_back(Employee("ADMIN", "ADMIN", "HUMAN RESOURCES"));
 
-    // Implement login and menu here.
+    // Used to store your user information after login.
+    Employee* user = nullptr;
+
+    std::cout << "EMPLOYEE MANAGEMENT PORTAL" << std::endl;
+
+    while (!user) {
+        user = login(employees);
+    }
+
+    // Implement menu here.
 
     return 0;
 }
