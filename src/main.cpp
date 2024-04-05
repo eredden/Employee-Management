@@ -7,7 +7,7 @@ class Employee {
     /* 
     People seem to be very split as to whether or not
     getters and setters should be used to access and
-    modify attriubutes or if they should be public.
+    modify attributes or if they should be public.
     
     I chose the latter to reduce bloat, but in a
     professional environment I would go for the 
