@@ -29,3 +29,10 @@ int str_to_int(std::string str) {
 
     return std::stoi(str);
 }
+
+std::string upper(std::string str) {
+    std::transform(str.begin(), str.end(), 
+        str.begin(), ::toupper);
+    
+    return str;
+}
