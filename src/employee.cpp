@@ -78,6 +78,15 @@ void add_user(std::vector<Employee>& employees) {
             return;
     }
 
+    for (int i = 0; i > employees.size(); i++) {
+        if (username == employees[i].username) {
+            std::cout << "User creation failed as the user already exists.";
+            std::cout << std::endl;
+
+            return;
+        }
+    }
+
     employees.push_back(Employee(username, password, role));
 
     std::cout << "User " << username;
@@ -125,7 +134,8 @@ void modify_user(std::vector<Employee>& employees) {
 }
 
 // Delete Employee object from vector list based off username.
-void delete_user(std::vector<Employee>& employees) {
+// The "your_index" is not deleted but rather an index NOT to delete (yourself).
+void delete_user(std::vector<Employee>& employees, int your_index) {
     std::string username;
     prompt("Username: ", username);
 
@@ -138,6 +148,12 @@ void delete_user(std::vector<Employee>& employees) {
     /* Convert username to uppercase so that we can search the 
        vector without worrying about case-sensitivity. */
     username = upper(username);
+
+    if (username == employees[your_index].username) {
+        std::cout << "You may not delete yourself." << std::endl;
+
+        return;
+    }
 
     for (int i = 0; i < employees.size(); i++) {
         if (employees[i].username == username) {

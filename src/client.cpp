@@ -54,7 +54,6 @@ void menu(std::vector<Employee>& employees, int index) {
     std::string option_str;
     int         option;
 
-    std::cout << "Actions you may take:" << std::endl;
     std::cout << "1. EXIT the program."  << std::endl;
     std::cout << "2. VIEW yourself."     << std::endl;
     
@@ -116,7 +115,7 @@ void menu(std::vector<Employee>& employees, int index) {
         }
 
         else if (option == 7) {
-            delete_user(employees);
+            delete_user(employees, index);
             std::cout << std::endl;
         }
     }

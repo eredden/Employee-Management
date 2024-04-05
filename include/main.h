@@ -28,7 +28,7 @@ void view_user(std::vector<Employee>& employees);
 void show_users(std::vector<Employee>& employees);
 void add_user(std::vector<Employee>& employees);
 void modify_user(std::vector<Employee>& employees);
-void delete_user(std::vector<Employee>& employees);
+void delete_user(std::vector<Employee>& employees, int your_index);
 
 void prompt(std::string dialogue, std::string& buffer);
 int str_to_int(std::string str);
