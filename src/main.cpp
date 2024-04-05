@@ -32,17 +32,17 @@ int main(void) {
     std::vector<Employee> employees = {};
     employees.push_back(Employee("ADMIN", "ADMIN", "HUMAN RESOURCES"));
 
-    Employee* user_ptr = nullptr; // Pointer to employee you are logged in as.
+    int user_index = -1; // Index of employee in employees vector.
 
     std::cout << "EMPLOYEE MANAGEMENT PORTAL" << std::endl;
 
-    while (!user_ptr) {
-        user_ptr = login(employees);
+    while (user_index == -1) {
+        user_index = login(employees);
     }
 
     // Repeatedly go through the menu and process the desired actions.
     for (;;) {
-        menu(employees, *user_ptr);
+        menu(employees, user_index);
     }
 
     return 0;

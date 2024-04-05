@@ -21,8 +21,8 @@ class Employee {
         }
 };
 
-Employee* login(std::vector<Employee>& employees);
-void menu(std::vector<Employee>& employees, Employee& user);
+int login(std::vector<Employee>& employees);
+void menu(std::vector<Employee>& employees, int index);
 
 void view_user(std::vector<Employee>& employees);
 void show_users(std::vector<Employee>& employees);
@@ -32,5 +32,6 @@ void delete_user(std::vector<Employee>& employees);
 
 void prompt(std::string dialogue, std::string& buffer);
 int str_to_int(std::string str);
+std::string upper(std::string str);
 
 #endif // MANAGE

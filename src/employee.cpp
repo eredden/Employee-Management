@@ -20,8 +20,7 @@ void view_user(std::vector<Employee>& employees) {
 
     /* Convert username to uppercase so that we can search the 
        vector without worrying about case-sensitivity. */
-    std::transform(username.begin(), username.end(), 
-        username.begin(), ::toupper);
+    username = upper(username);
 
     for (int i = 0; i < employees.size(); i++) {
         if (employees[i].username == username) {
@@ -67,10 +66,8 @@ void add_user(std::vector<Employee>& employees) {
     prompt("    ROLE: ", role);
 
     // Username and role are converted to uppercase for future comparisons.
-    std::transform(username.begin(), username.end(), 
-        username.begin(), ::toupper);
-    std::transform(role.begin(), role.end(), 
-        role.begin(), ::toupper);
+    username = upper(username);
+    role     = upper(role);
 
     if (!username.length() || 
         !password.length() || 
@@ -101,15 +98,20 @@ void modify_user(std::vector<Employee>& employees) {
 
     /* Convert username to uppercase so that we can search the 
        vector without worrying about case-sensitivity. */
-    std::transform(username.begin(), username.end(), 
-        username.begin(), ::toupper);
+    username = upper(username);
 
     for (int i = 0; i < employees.size(); i++) {
         if (employees[i].username == username) {
-            /* Directly writing to employees[i] instead of variable
-               user here so that our changes are not lost. */
-            prompt("NEW USERNAME: ", employees[i].username);
-            prompt("NEW ROLE:     ", employees[i].role);
+            std::string new_username;
+            std::string new_role;
+
+            prompt("NEW USERNAME: ", new_username);
+            prompt("NEW ROLE:     ", new_role);
+
+            /* Directly writing to employees[i] instead of a
+               variable here so that our changes are not lost. */
+            employees[i].username = upper(new_username);
+            employees[i].role     = upper(new_role);
 
             std::cout << "User " << employees[i].username;
             std::cout << " has role " << employees[i].role << ".";
@@ -135,8 +137,7 @@ void delete_user(std::vector<Employee>& employees) {
 
     /* Convert username to uppercase so that we can search the 
        vector without worrying about case-sensitivity. */
-    std::transform(username.begin(), username.end(), 
-        username.begin(), ::toupper);
+    username = upper(username);
 
     for (int i = 0; i < employees.size(); i++) {
         if (employees[i].username == username) {

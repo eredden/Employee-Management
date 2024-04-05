@@ -8,7 +8,7 @@
 #include "../include/main.h"
 
 // Client-side login prompt when entering the program.
-Employee* login(std::vector<Employee>& employees) {
+int login(std::vector<Employee>& employees) {
     std::string username;
     std::string password;
 
@@ -19,13 +19,12 @@ Employee* login(std::vector<Employee>& employees) {
         std::cout << "Username and password fields cannot be empty.";
         std::cout << std::endl << std::endl;
 
-        return nullptr;
+        return -1;
     }
 
     /* Convert username to uppercase so that we can search the 
        vector without worrying about case-sensitivity. */
-    std::transform(username.begin(), username.end(), 
-        username.begin(), ::toupper);
+    username = upper(username);
 
     for (int i = 0; i < employees.size(); i++) {
         if (employees[i].username == username) {
@@ -33,12 +32,12 @@ Employee* login(std::vector<Employee>& employees) {
                 std::cout << "Welcome, " << employees[i].username << "!";
                 std::cout << std::endl << std::endl;
 
-                return &employees[i];
+                return i;
             } else {
                 std::cout << "Invalid credentials.";
                 std::cout << std::endl << std::endl;
 
-                return nullptr;
+                return -1;
             }
         }
     }
@@ -46,11 +45,12 @@ Employee* login(std::vector<Employee>& employees) {
     std::cout << "Invalid credentials.";
     std::cout << std::endl << std::endl;
 
-    return nullptr;
+    return -1;
 }
 
 // Displays a menu of actions to the end-user and returns their choice.
-void menu(std::vector<Employee>& employees, Employee& user) {
+void menu(std::vector<Employee>& employees, int index) {
+    Employee user = employees[index];
     std::string option_str;
     int         option;
 
