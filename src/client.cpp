@@ -15,13 +15,6 @@ int login(std::vector<Employee>& employees) {
     prompt("USERNAME: ", username);
     prompt("PASSWORD: ", password);
 
-    if (!username.length() || !password.length()) {
-        std::cout << "Username and password fields cannot be empty.";
-        std::cout << std::endl << std::endl;
-
-        return -1;
-    }
-
     /* Convert username to uppercase so that we can search the 
        vector without worrying about case-sensitivity. */
     username = upper(username);

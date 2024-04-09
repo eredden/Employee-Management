@@ -12,12 +12,6 @@ void view_user(std::vector<Employee>& employees) {
     std::string username;
     prompt("Username: ", username);
 
-    if (!username.length()) {
-        std::cout << "You must input a username to search for." << std::endl;
-
-        return;
-    }
-
     /* Convert username to uppercase so that we can search the 
        vector without worrying about case-sensitivity. */
     username = upper(username);
@@ -69,15 +63,6 @@ void add_user(std::vector<Employee>& employees) {
     username = upper(username);
     role     = upper(role);
 
-    if (!username.length() || 
-        !password.length() || 
-            !role.length()) {
-            std::cout << "User creation failed due to one or more inputs ";
-            std::cout << "being 0 characters in length." << std::endl;
-
-            return;
-    }
-
     for (int i = 0; i > employees.size(); i++) {
         if (username == employees[i].username) {
             std::cout << "User creation failed as the user already exists.";
@@ -98,12 +83,6 @@ void add_user(std::vector<Employee>& employees) {
 void modify_user(std::vector<Employee>& employees) {
     std::string username;
     prompt("Username: ", username);
-
-    if (!username.length()) {
-        std::cout << "You must input a username to search for." << std::endl;
-
-        return;
-    }
 
     /* Convert username to uppercase so that we can search the 
        vector without worrying about case-sensitivity. */
@@ -138,12 +117,6 @@ void modify_user(std::vector<Employee>& employees) {
 void delete_user(std::vector<Employee>& employees, int your_index) {
     std::string username;
     prompt("Username: ", username);
-
-    if (!username.length()) {
-        std::cout << "You must input a username to search for." << std::endl;
-
-        return;
-    }
 
     /* Convert username to uppercase so that we can search the 
        vector without worrying about case-sensitivity. */

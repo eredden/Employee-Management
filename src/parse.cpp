@@ -7,13 +7,29 @@
 
 #include "../include/main.h"
 
+// Check if a string is just whitespace.
+bool is_whitespace(std::string& s) {
+  return std::all_of(s.begin(), s.end(), isspace);
+}
+
 // Prompt the user with dialogue and put their answer in a buffer string.
 void prompt(std::string dialogue, std::string& buffer) {
-    while (std::cout << dialogue && !std::getline(std::cin, buffer)) {
-        std::cin.clear();
-        std::cin.ignore(1000, '\n');
+    for (;;) { 
+        while (std::cout << dialogue && !std::getline(std::cin, buffer)) {
+                std::cin.clear();
+                std::cin.ignore(1000, '\n');
 
-        std::cout << "Please enter a valid input." << std::endl;
+                std::cout << "Please enter a valid input." << std::endl;
+            }
+
+        if (is_whitespace(buffer)) {
+            std::cout << "Blank inputs are not allowed." << std::endl;
+
+            buffer.clear();
+            continue;
+        }
+
+        break;
     }
 }
 
@@ -30,6 +46,7 @@ int str_to_int(std::string str) {
     return std::stoi(str);
 }
 
+// Make all characters in a string uppercase.
 std::string upper(std::string str) {
     std::transform(str.begin(), str.end(), 
         str.begin(), ::toupper);
